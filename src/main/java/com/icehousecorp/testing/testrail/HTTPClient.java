@@ -1,14 +1,14 @@
 package com.icehousecorp.testing.testrail;
 
-/**
- * TestRail API binding for Java (API v2, available since TestRail 3.0)
- * <p>
- * Learn more:
- * <p>
- * http://docs.gurock.com/testrail-api2/start
- * http://docs.gurock.com/testrail-api2/accessing
- * <p>
- * Copyright Gurock Software GmbH. See license.md for details.
+/*
+  TestRail API binding for Java (API v2, available since TestRail 3.0)
+  <p>
+  Learn more:
+  <p>
+  http://docs.gurock.com/testrail-api2/start
+  http://docs.gurock.com/testrail-api2/accessing
+  <p>
+  Copyright Gurock Software GmbH. See license.md for details.
  */
 
 import com.alibaba.fastjson.JSON;
@@ -23,18 +23,19 @@ import java.io.OutputStream;
 import java.io.BufferedReader;
 import java.io.UnsupportedEncodingException;
 
+@SuppressWarnings("unused")
 public class HTTPClient {
     private String m_user;
     private String m_password;
     private String m_url;
 
     public class APIException extends Exception {
-        public APIException(String message) {
+        APIException(String message) {
             super(message);
         }
     }
 
-    public HTTPClient(String base_url) {
+    HTTPClient(String base_url) {
         if (!base_url.endsWith("/")) {
             base_url += "/";
         }
@@ -42,29 +43,11 @@ public class HTTPClient {
         this.m_url = base_url + "index.php?/api/v2/";
     }
 
-    /**
-     * Get/Set User
-     * <p>
-     * Returns/sets the user used for authenticating the API requests.
-     */
-    public String getUser() {
-        return this.m_user;
-    }
-
-    public void setUser(String user) {
+    void setUser(String user) {
         this.m_user = user;
     }
 
-    /**
-     * Get/Set Password
-     * <p>
-     * Returns/sets the password used for authenticating the API requests.
-     */
-    public String getPassword() {
-        return this.m_password;
-    }
-
-    public void setPassword(String password) {
+    void setPassword(String password) {
         this.m_password = password;
     }
 
@@ -107,7 +90,7 @@ public class HTTPClient {
      * API method). In most cases, this returns a JSONObject instance which
      * is basically the same as java.util.Map.
      */
-    public String sendPost(String uri, Object data)
+    String sendPost(String uri, Object data)
             throws IOException, APIException {
         return this.sendRequest("POST", uri, data);
     }
@@ -158,7 +141,7 @@ public class HTTPClient {
         }
 
         // Read the response body, if any, and deserialize it from JSON.
-        String text = "";
+        StringBuilder text = new StringBuilder();
         if (istream != null) {
             BufferedReader reader = new BufferedReader(
                     new InputStreamReader(
@@ -169,16 +152,16 @@ public class HTTPClient {
 
             String line;
             while ((line = reader.readLine()) != null) {
-                text += line;
-                text += System.getProperty("line.separator");
+                text.append(line);
+                text.append(System.getProperty("line.separator"));
             }
 
             reader.close();
         }
 
         JSONObject result;
-        if (!text.equals("")) {
-            result = JSON.parseObject(text);
+        if (!text.toString().equals("")) {
+            result = JSON.parseObject(text.toString());
         } else {
             result = new JSONObject();
         }
@@ -195,7 +178,7 @@ public class HTTPClient {
             throw new APIException("TestRail API returned HTTP " + status + "(" + error + ")");
         }
 
-        return text;
+        return text.toString();
     }
 
     private static String getAuthorization(String user, String password) {

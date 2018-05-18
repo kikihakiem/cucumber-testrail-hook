@@ -1,5 +1,6 @@
 package com.icehousecorp.testing.testrail.model;
 
+@SuppressWarnings("unused")
 public enum TestStatus {
     PASSED(1), BLOCKED(2), UNTESTED(3), RETEST(4), FAILED(5);
     private final int code;

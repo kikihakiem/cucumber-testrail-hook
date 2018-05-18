@@ -1,5 +1,6 @@
 package com.icehousecorp.testing.hook;
 
+import com.icehousecorp.common.Util;
 import com.icehousecorp.testing.testrail.API;
 import com.icehousecorp.testing.testrail.HTTPClient;
 import com.icehousecorp.testing.testrail.model.*;
@@ -29,6 +30,8 @@ public class TestRail {
 
         TestResult testResult = new TestResult(statusId);
         TestCase testCase = new TestCase();
+        testCase.setId(Util.getCallerCaseId());
+
         try {
             API.client().submitTestResult(testRun, testCase, testResult);
         } catch (IOException | HTTPClient.APIException e) {
