@@ -23,7 +23,7 @@ import java.io.OutputStream;
 import java.io.BufferedReader;
 import java.io.UnsupportedEncodingException;
 
-public class APIClient {
+public class HTTPClient {
     private String m_user;
     private String m_password;
     private String m_url;
@@ -34,7 +34,7 @@ public class APIClient {
         }
     }
 
-    public APIClient(String base_url) {
+    public HTTPClient(String base_url) {
         if (!base_url.endsWith("/")) {
             base_url += "/";
         }
@@ -84,7 +84,7 @@ public class APIClient {
      * API method). In most cases, this returns a JSONObject instance which
      * is basically the same as java.util.Map.
      */
-    public Object sendGet(String uri)
+    public String sendGet(String uri)
             throws IOException, APIException {
         return this.sendRequest("GET", uri, null);
     }
@@ -107,12 +107,12 @@ public class APIClient {
      * API method). In most cases, this returns a JSONObject instance which
      * is basically the same as java.util.Map.
      */
-    public Object sendPost(String uri, Object data)
+    public String sendPost(String uri, Object data)
             throws IOException, APIException {
         return this.sendRequest("POST", uri, data);
     }
 
-    private Object sendRequest(String method, String uri, Object data)
+    private String sendRequest(String method, String uri, Object data)
             throws IOException, APIException {
         URL url = new URL(this.m_url + uri);
 
@@ -195,7 +195,7 @@ public class APIClient {
             throw new APIException("TestRail API returned HTTP " + status + "(" + error + ")");
         }
 
-        return result;
+        return text;
     }
 
     private static String getAuthorization(String user, String password) {
