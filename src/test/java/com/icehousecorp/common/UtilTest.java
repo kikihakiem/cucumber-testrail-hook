@@ -27,10 +27,4 @@ public class UtilTest {
             assertEquals(123, caseId);
         });
     }
-
-    @Test
-    public void getCaseId_fromTag() {
-        int caseId = Util.getCaseId("@testrail.case-234");
-        assertEquals(234, caseId);
-    }
 }

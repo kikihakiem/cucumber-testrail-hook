@@ -12,8 +12,7 @@ public class TestResult {
     @JSONField(name = "custom_defect_grade")
     private Integer customDefectGrade;
 
-    public TestResult(int statusId) {
-        this.statusId = statusId;
+    public TestResult() {
         this.customDefectGrade = 3;
     }
 }

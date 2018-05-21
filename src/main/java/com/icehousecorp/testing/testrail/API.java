@@ -26,13 +26,12 @@ public class API {
         return Holder.api;
     }
 
-    public TestRun createTestRun(String name) throws IOException, HTTPClient.APIException {
-        TestRun testRun = TestRun.builder().name(name).projectId(Project.instance().getId()).build();
+    public TestRun createTestRun(TestRun testRun) throws IOException, HTTPClient.APIException {
         String json = client.sendPost("add_run/" + testRun.getProjectId(), testRun);
         return JSON.parseObject(json, TestRun.class);
     }
 
-    public void submitTestResult(TestRun testRun, TestCase testCase, TestResult testResult) throws IOException, HTTPClient.APIException {
+    public void addTestResult(TestRun testRun, TestCase testCase, TestResult testResult) throws IOException, HTTPClient.APIException {
         client.sendPost("add_result_for_case/" + testRun.getId() + "/" + testCase.getId(), testResult);
     }
 }
