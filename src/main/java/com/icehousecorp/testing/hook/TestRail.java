@@ -29,8 +29,12 @@ public class TestRail {
         }
 
         TestResult testResult = new TestResult(statusId);
+        testResult.setCustomDefectGrade(3);
+
+        String tagName = scenario.getSourceTagNames().iterator().next();
+        int caseId = Util.getCaseId(tagName);
         TestCase testCase = new TestCase();
-        testCase.setId(Util.getCallerCaseId());
+        testCase.setId(caseId);
 
         try {
             API.client().submitTestResult(testRun, testCase, testResult);
