@@ -2,6 +2,7 @@ package com.icehousecorp.testing.testrail.model;
 
 import com.icehousecorp.testing.testrail.Config;
 
+@SuppressWarnings("unused")
 public class Project {
     private Integer id;
 

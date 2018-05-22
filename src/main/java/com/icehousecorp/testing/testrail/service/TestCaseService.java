@@ -8,8 +8,8 @@ import java.util.regex.Pattern;
 
 public class TestCaseService {
     private static final Pattern regex = Pattern.compile("^@case.id-(?<id>\\d+)");
-    static int getIdFromTags(Collection<String> tags) {
-        int id = 0;
+    private static int getIdFromTags(Collection<String> tags) {
+        int id;
         for (String tag : tags) {
             id = getIdFromTag(tag);
             if (id != 0) return id;

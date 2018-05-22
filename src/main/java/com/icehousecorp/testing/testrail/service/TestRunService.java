@@ -20,7 +20,7 @@ public class TestRunService {
         return testRun;
     }
 
-    static String getName() {
+    private static String getName() {
         return System.getProperty("testrun.name", "Default Test Run");
     }
 }

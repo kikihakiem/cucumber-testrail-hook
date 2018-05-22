@@ -1,7 +1,6 @@
 package com.icehousecorp.testing.testrail;
 
 import com.alibaba.fastjson.JSON;
-import com.icehousecorp.testing.testrail.model.Project;
 import com.icehousecorp.testing.testrail.model.TestCase;
 import com.icehousecorp.testing.testrail.model.TestResult;
 import com.icehousecorp.testing.testrail.model.TestRun;

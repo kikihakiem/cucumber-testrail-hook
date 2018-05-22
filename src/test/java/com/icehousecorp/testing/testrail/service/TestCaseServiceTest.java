@@ -1,9 +1,8 @@
 package com.icehousecorp.testing.testrail.service;
 
-import com.icehousecorp.testing.testrail.service.TestCaseService;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class TestCaseServiceTest {
 
